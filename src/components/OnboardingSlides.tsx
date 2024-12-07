@@ -39,25 +39,29 @@ const OnboardingSlides = () => {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 flex flex-col items-center justify-center p-6 transition-transform duration-300 ${
-              index === currentSlide ? 'translate-x-0' : 'translate-x-full'
+            className={`absolute inset-0 flex flex-col items-center justify-center p-6 transition-all duration-500 ease-in-out ${
+              index === currentSlide 
+                ? 'translate-x-0 opacity-100 scale-100' 
+                : index < currentSlide 
+                  ? '-translate-x-full opacity-0 scale-95'
+                  : 'translate-x-full opacity-0 scale-95'
             }`}
           >
             <img
               src={`https://images.unsplash.com/${slide.image}?auto=format&fit=crop&w=800`}
               alt={slide.title}
-              className="w-64 h-64 object-cover rounded-2xl mb-8"
+              className="w-64 h-64 object-cover rounded-2xl mb-8 shadow-lg animate-fade-in"
             />
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center animate-fade-in">
               {slide.title}
             </h2>
-            <p className="text-gray-600 text-center mb-8 max-w-xs">
+            <p className="text-gray-600 text-center mb-8 max-w-xs animate-fade-in">
               {slide.description}
             </p>
           </div>
         ))}
       </div>
-      <div className="p-6">
+      <div className="p-6 animate-fade-in">
         <div className="flex justify-center space-x-2 mb-8">
           {slides.map((_, index) => (
             <div
@@ -69,11 +73,11 @@ const OnboardingSlides = () => {
           ))}
         </div>
         <Button
-          className="w-full py-6 text-lg"
+          className="w-full py-6 text-lg transition-all duration-300 hover:scale-105"
           onClick={handleNext}
         >
           {currentSlide === slides.length - 1 ? 'Get Started' : 'Next'}
-          <ChevronRight className="ml-2 h-5 w-5" />
+          <ChevronRight className="ml-2 h-5 w-5 animate-slide-in-right" />
         </Button>
       </div>
     </div>
