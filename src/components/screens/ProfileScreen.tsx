@@ -2,15 +2,25 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useNavigate } from "react-router-dom";
-import { User, ArrowLeft, Award, Clock, BookOpen, Star } from "lucide-react";
+import { User, ArrowLeft, Award, Clock, BookOpen, Star, Settings, LogOut, Moon, Globe } from "lucide-react";
 
 const ProfileScreen = () => {
   const navigate = useNavigate();
 
+  const enrolledCourses = [
+    { name: "Python for Beginners", status: "In Progress", progress: 60 },
+    { name: "Web Development Basics", status: "Completed", progress: 100 },
+    { name: "AI Fundamentals", status: "Not Started", progress: 0 }
+  ];
+
   const achievements = [
-    { title: "Python Guru", description: "Completed all Python courses" },
-    { title: "Consistent Learner", description: "30-day study streak" },
-    { title: "Quiz Master", description: "Perfect score in 5 quizzes" }
+    { title: "100% Course Completion", course: "Python for Beginners" },
+    { title: "90% Completion", course: "Web Development Basics" }
+  ];
+
+  const certificates = [
+    { name: "Python for Beginners", date: "March 2024" },
+    { name: "Web Development Basics", date: "February 2024" }
   ];
 
   return (
@@ -25,56 +35,81 @@ const ProfileScreen = () => {
         </Button>
 
         <Card className="p-6 mb-6 animate-fade-in">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
-              <User className="w-10 h-10 text-primary" />
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center cursor-pointer hover:bg-primary/20 transition-colors">
+              <User className="w-12 h-12 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold">Tlhalefang</h1>
-              <p className="text-gray-600">Student</p>
+              <h1 className="text-2xl font-bold">Tlhalefang Ntshilane</h1>
+              <p className="text-gray-600">tlhalefang@example.com</p>
+              <p className="text-gray-600">+26712345678</p>
+              <p className="text-gray-600">Botho University</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-primary">4</div>
-              <div className="text-sm text-gray-600">Courses</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-primary">50</div>
-              <div className="text-sm text-gray-600">Hours</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-primary">3</div>
-              <div className="text-sm text-gray-600">Certificates</div>
-            </div>
-          </div>
-
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div>
-              <div className="flex justify-between text-sm mb-1">
-                <span>Overall Progress</span>
-                <span>75%</span>
+              <h2 className="text-lg font-semibold mb-3">Enrolled Courses</h2>
+              {enrolledCourses.map((course, index) => (
+                <div key={index} className="mb-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-medium">{course.name}</span>
+                    <span className="text-sm text-gray-600">{course.status}</span>
+                  </div>
+                  <Progress value={course.progress} className="h-2" />
+                </div>
+              ))}
+            </div>
+
+            <div>
+              <h2 className="text-lg font-semibold mb-3">Achievements</h2>
+              <div className="space-y-3">
+                {achievements.map((achievement, index) => (
+                  <Card key={index} className="p-3 flex items-center gap-3">
+                    <Award className="text-yellow-400" />
+                    <div>
+                      <p className="font-medium">{achievement.title}</p>
+                      <p className="text-sm text-gray-600">{achievement.course}</p>
+                    </div>
+                  </Card>
+                ))}
               </div>
-              <Progress value={75} className="h-2" />
+            </div>
+
+            <div>
+              <h2 className="text-lg font-semibold mb-3">Certificates</h2>
+              <div className="space-y-3">
+                {certificates.map((certificate, index) => (
+                  <Card key={index} className="p-3 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <Award className="text-primary" />
+                      <div>
+                        <p className="font-medium">{certificate.name}</p>
+                        <p className="text-sm text-gray-600">{certificate.date}</p>
+                      </div>
+                    </div>
+                    <Button variant="outline" size="sm">View</Button>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <Button variant="outline" className="w-full justify-start">
+                <Settings className="mr-2" /> Account Settings
+              </Button>
+              <Button variant="outline" className="w-full justify-start">
+                <Moon className="mr-2" /> Dark Mode
+              </Button>
+              <Button variant="outline" className="w-full justify-start">
+                <Globe className="mr-2" /> Language: English
+              </Button>
+              <Button variant="destructive" className="w-full justify-start">
+                <LogOut className="mr-2" /> Log Out
+              </Button>
             </div>
           </div>
         </Card>
-
-        <h2 className="text-xl font-bold mb-4">Achievements</h2>
-        <div className="space-y-4">
-          {achievements.map((achievement, index) => (
-            <Card key={index} className="p-4 flex items-center gap-4 animate-fade-in">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                <Award className="w-6 h-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-semibold">{achievement.title}</h3>
-                <p className="text-sm text-gray-600">{achievement.description}</p>
-              </div>
-            </Card>
-          ))}
-        </div>
       </div>
     </div>
   );
