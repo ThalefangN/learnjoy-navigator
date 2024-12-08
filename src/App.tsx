@@ -8,6 +8,9 @@ import SignUpForm from "./components/SignUpForm";
 import SignInForm from "./components/SignInForm";
 import VerificationScreen from "./components/VerificationScreen";
 import HomeScreen from "./components/HomeScreen";
+import SearchScreen from "./components/screens/SearchScreen";
+import PastPapersScreen from "./components/screens/PastPapersScreen";
+import AIChatScreen from "./components/screens/AIChatScreen";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +26,9 @@ const App = () => (
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/verify" element={<VerificationScreen />} />
           <Route path="/home" element={<HomeScreen />} />
+          <Route path="/search" element={<SearchScreen />} />
+          <Route path="/past-papers" element={<PastPapersScreen />} />
+          <Route path="/ai-chat" element={<AIChatScreen />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
