@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Code, FileText, ClipboardList, Trophy, Grid } from "lucide-react";
+import { Code, FileText, MessageSquare, Book, Grid } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const QuickActions = () => {
@@ -13,10 +13,10 @@ const QuickActions = () => {
       </h2>
       <div className="grid grid-cols-2 gap-3">
         {[
-          { icon: Code, label: "Start New Course", path: "/courses" },
-          { icon: FileText, label: "Take a Quiz", path: "/quizzes" },
-          { icon: ClipboardList, label: "View Assignments", path: "/assignments" },
-          { icon: Trophy, label: "View Achievements", path: "/achievements" }
+          { icon: Code, label: "Start Course", path: "/courses" },
+          { icon: FileText, label: "Take Quiz", path: "/quizzes" },
+          { icon: Book, label: "Past Papers", path: "/past-papers" },
+          { icon: MessageSquare, label: "AI Chat", path: "/ai-chat" }
         ].map((action, index) => (
           <Button
             key={index}
