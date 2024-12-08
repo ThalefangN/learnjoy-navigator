@@ -11,6 +11,10 @@ import HomeScreen from "./components/HomeScreen";
 import SearchScreen from "./components/screens/SearchScreen";
 import PastPapersScreen from "./components/screens/PastPapersScreen";
 import AIChatScreen from "./components/screens/AIChatScreen";
+import StartCourseScreen from "./components/screens/StartCourseScreen";
+import TakeQuizScreen from "./components/screens/TakeQuizScreen";
+import CoursesScreen from "./components/screens/CoursesScreen";
+import ProfileScreen from "./components/screens/ProfileScreen";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +33,10 @@ const App = () => (
           <Route path="/search" element={<SearchScreen />} />
           <Route path="/past-papers" element={<PastPapersScreen />} />
           <Route path="/ai-chat" element={<AIChatScreen />} />
+          <Route path="/start-course" element={<StartCourseScreen />} />
+          <Route path="/take-quiz" element={<TakeQuizScreen />} />
+          <Route path="/courses" element={<CoursesScreen />} />
+          <Route path="/profile" element={<ProfileScreen />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

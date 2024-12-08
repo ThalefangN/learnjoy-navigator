@@ -12,11 +12,11 @@ const HomeScreen = () => {
     <div className="min-h-screen bg-gradient-to-b from-primary/5 to-secondary/5 pb-20">
       <div className="max-w-lg mx-auto px-4">
         {/* Header */}
-        <div className="text-center py-6">
+        <div className="text-center py-6 animate-fade-in">
           <h1 className="text-2xl font-bold text-primary mb-2">🎓 Welcome to BotsEdu Learn 🎓</h1>
           <Button 
             variant="ghost"
-            className="w-full relative"
+            className="w-full relative hover:bg-white/50 transition-colors duration-300"
             onClick={() => navigate("/search")}
           >
             <Search className="absolute left-3 text-gray-400" />
@@ -25,10 +25,10 @@ const HomeScreen = () => {
         </div>
 
         {/* User Greeting */}
-        <Card className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in">
+        <Card className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in hover:shadow-lg transition-all duration-300">
           <h2 className="text-lg font-semibold">Hello, Tlhalefang!</h2>
           <p className="flex items-center gap-2">
-            Today's Learning Streak: <Flame className="text-orange-500" /> 5 days in a row
+            Today's Learning Streak: <Flame className="text-orange-500 animate-pulse" /> 5 days in a row
           </p>
         </Card>
 
@@ -37,7 +37,7 @@ const HomeScreen = () => {
 
         {/* Past Papers */}
         <Card 
-          className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in cursor-pointer hover:bg-white/90 transition-all"
+          className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in cursor-pointer hover:bg-white/90 transition-all duration-300 transform hover:scale-105"
           onClick={() => navigate("/past-papers")}
         >
           <h2 className="text-lg font-semibold flex items-center gap-2 mb-3">
@@ -59,7 +59,7 @@ const HomeScreen = () => {
 
         {/* AI Chat Tutor */}
         <Card 
-          className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in cursor-pointer hover:bg-white/90 transition-all"
+          className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in cursor-pointer hover:bg-white/90 transition-all duration-300 transform hover:scale-105"
           onClick={() => navigate("/ai-chat")}
         >
           <h2 className="text-lg font-semibold flex items-center gap-2 mb-3">
@@ -75,14 +75,14 @@ const HomeScreen = () => {
               className="flex-1 px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
               readOnly
             />
-            <Button>
+            <Button className="hover:scale-105 transition-transform">
               <Send className="h-4 w-4" />
             </Button>
           </div>
         </Card>
 
         {/* Bottom Navigation */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
+        <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur border-t border-gray-200 px-4 py-2">
           <div className="max-w-lg mx-auto flex justify-between items-center">
             {[
               { icon: Home, label: "Home", path: "/home" },
@@ -93,7 +93,7 @@ const HomeScreen = () => {
               <Button
                 key={index}
                 variant="ghost"
-                className="flex flex-col items-center gap-1"
+                className="flex flex-col items-center gap-1 hover:bg-primary/5 transition-colors duration-300"
                 onClick={() => navigate(item.path)}
               >
                 <item.icon className="h-5 w-5" />
