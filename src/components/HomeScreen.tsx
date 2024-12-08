@@ -1,166 +1,213 @@
 import { Button } from "@/components/ui/button";
-import { Search, BookOpen, Code, Palette, Music, ChevronRight, Play, Clock, Star } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Progress } from "@/components/ui/progress";
+import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
-
-const categories = [
-  { icon: Code, name: "Programming", courses: 120 },
-  { icon: Palette, name: "Design", courses: 85 },
-  { icon: Music, name: "Music", courses: 65 },
-  { icon: BookOpen, name: "Languages", courses: 200 },
-];
-
-const featuredCourses = [
-  {
-    title: "Learn Python Programming",
-    instructor: "John Doe",
-    duration: "8 weeks",
-    image: "photo-1487058792275-0ad4aaf24ca7",
-    rating: 4.8,
-    students: 1234
-  },
-  {
-    title: "UI/UX Design Basics",
-    instructor: "Jane Smith",
-    duration: "6 weeks",
-    image: "photo-1488590528505-98d2b5aba04b",
-    rating: 4.9,
-    students: 856
-  },
-  {
-    title: "Web Development Bootcamp",
-    instructor: "Mike Johnson",
-    duration: "12 weeks",
-    image: "photo-1498050108023-c5249f4df085",
-    rating: 4.7,
-    students: 2341
-  }
-];
-
-const popularInstructors = [
-  {
-    name: "Sarah Wilson",
-    expertise: "Digital Marketing",
-    image: "photo-1581091226825-a6a2a5aee158",
-    students: 5600
-  },
-  {
-    name: "David Chen",
-    expertise: "Data Science",
-    image: "photo-1581092795360-fd1ca04f0952",
-    students: 4800
-  }
-];
+import {
+  Search,
+  BookOpen,
+  Code,
+  Play,
+  Download,
+  Send,
+  Calendar,
+  Bell,
+  Trophy,
+  Book,
+  ClipboardList,
+  User,
+  Home,
+  Flame,
+  MessageSquare,
+  FileText,
+  Grid,
+  Award,
+  Link,
+  Video
+} from 'lucide-react';
 
 const HomeScreen = () => {
-  const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleCategoryClick = (category: string) => {
+  const handleActionClick = (action: string) => {
     toast({
-      title: "Category Selected",
-      description: `Exploring ${category} courses...`,
-    });
-  };
-
-  const handleCourseClick = (courseTitle: string) => {
-    toast({
-      title: "Course Selected",
-      description: `Opening ${courseTitle}...`,
+      title: "Action Triggered",
+      description: `${action} action was clicked`,
     });
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-primary text-white p-6 pb-12 rounded-b-[40px]">
-        <h1 className="text-2xl font-bold mb-6">Hello, Learner! 👋</h1>
-        <div className="relative">
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search courses..."
-            className="w-full py-4 pl-12 pr-4 rounded-xl bg-white text-gray-900"
-          />
+    <div className="min-h-screen bg-gradient-to-b from-primary/5 to-secondary/5 pb-20">
+      <div className="max-w-lg mx-auto px-4">
+        {/* Header */}
+        <div className="text-center py-6">
+          <h1 className="text-2xl font-bold text-primary mb-2">🎓 Welcome to BotsEdu Learn 🎓</h1>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search for a course..."
+              className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
+            />
+          </div>
         </div>
-      </div>
 
-      <div className="px-6 -mt-6">
-        <div className="bg-white rounded-xl p-6 shadow-sm mb-8 animate-fade-in">
-          <h2 className="text-lg font-semibold mb-4">Categories</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {categories.map((Category, index) => (
+        {/* User Greeting */}
+        <Card className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in">
+          <h2 className="text-lg font-semibold">Hello, Tlhalefang!</h2>
+          <p className="flex items-center gap-2">
+            Today's Learning Streak: <Flame className="text-orange-500" /> 5 days in a row
+          </p>
+        </Card>
+
+        {/* Current Course */}
+        <Card className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-3">
+            <BookOpen className="text-primary" /> Your Current Course
+          </h2>
+          <p className="text-gray-700 mb-2">📘 Advanced Python Programming</p>
+          <div className="mb-2">
+            <Progress value={80} className="h-2" />
+            <p className="text-sm text-gray-500 mt-1">80% Complete</p>
+          </div>
+          <p className="text-sm text-gray-600 mb-3">
+            🕒 Next Lesson: Object-Oriented Programming - Today at 3:00 PM
+          </p>
+          <Button 
+            onClick={() => handleActionClick("Continue Learning")}
+            className="w-full flex items-center justify-center gap-2"
+          >
+            <Play className="h-4 w-4" /> Continue Learning
+          </Button>
+        </Card>
+
+        {/* Quick Actions */}
+        <Card className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-3">
+            <Grid className="text-primary" /> Quick Actions
+          </h2>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { icon: Code, label: "Start New Course" },
+              { icon: FileText, label: "Take a Quiz" },
+              { icon: ClipboardList, label: "View Assignments" },
+              { icon: Trophy, label: "View Achievements" }
+            ].map((action, index) => (
               <Button
                 key={index}
                 variant="outline"
-                className="flex flex-col items-center justify-center h-24 hover:border-primary hover:text-primary transition-all duration-300"
-                onClick={() => handleCategoryClick(Category.name)}
+                className="h-24 flex flex-col items-center justify-center gap-2 hover:bg-primary/5"
+                onClick={() => handleActionClick(action.label)}
               >
-                <Category.icon className="h-6 w-6 mb-2" />
-                <span className="text-sm">{Category.name}</span>
-                <span className="text-xs text-gray-500">{Category.courses} courses</span>
+                <action.icon className="h-6 w-6 text-primary" />
+                <span className="text-sm text-center">{action.label}</span>
               </Button>
             ))}
           </div>
-        </div>
+        </Card>
 
-        <div className="mb-8 animate-fade-in">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold">Featured Courses</h2>
-            <Button variant="ghost" className="text-primary">
-              See All
-              <ChevronRight className="h-4 w-4 ml-1" />
+        {/* Past Papers */}
+        <Card className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-3">
+            <FileText className="text-primary" /> Past Exam Papers
+          </h2>
+          <div className="space-y-2">
+            {[
+              "Python - 2023 Midterm Paper",
+              "Java Basics - 2023 Final Paper",
+              "Data Structures - Practice Questions"
+            ].map((paper, index) => (
+              <Button
+                key={index}
+                variant="ghost"
+                className="w-full justify-start text-left"
+                onClick={() => handleActionClick(`Download ${paper}`)}
+              >
+                • {paper}
+              </Button>
+            ))}
+            <Button 
+              className="w-full mt-2 flex items-center justify-center gap-2"
+              onClick={() => handleActionClick("Download All Papers")}
+            >
+              <Download className="h-4 w-4" /> Download All Papers
             </Button>
           </div>
-          <div className="space-y-4">
-            {featuredCourses.map((course, index) => (
-              <div
+        </Card>
+
+        {/* AI Chat Tutor */}
+        <Card className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-3">
+            <MessageSquare className="text-primary" /> AI Chat Tutor
+          </h2>
+          <p className="text-gray-600 mb-3">
+            "Hi Tlhalefang! How can I help you today? Ask me about your courses, assignments, or anything else!"
+          </p>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              placeholder="Type your question here..."
+              className="flex-1 px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
+            />
+            <Button onClick={() => handleActionClick("Send Message")}>
+              <Send className="h-4 w-4" />
+            </Button>
+          </div>
+        </Card>
+
+        {/* Upcoming Events */}
+        <Card className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-3">
+            <Calendar className="text-primary" /> Upcoming Events
+          </h2>
+          <div className="space-y-2">
+            <p>🕒 Python Quiz: Opens Friday</p>
+            <p>📂 Submit Project: Data Science Basics - Due Tomorrow</p>
+            <p>📢 Webinar: "Mastering AI Tools" - Thursday</p>
+          </div>
+        </Card>
+
+        {/* Resource Links */}
+        <Card className="p-4 mb-4 bg-white/80 backdrop-blur animate-fade-in">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-3">
+            <Link className="text-primary" /> Resource Links
+          </h2>
+          <div className="space-y-2">
+            {[
+              { icon: Book, label: "E-Books Library" },
+              { icon: Code, label: "Coding Practice Challenges" },
+              { icon: Video, label: "Video Tutorials" }
+            ].map((resource, index) => (
+              <Button
                 key={index}
-                className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
-                onClick={() => handleCourseClick(course.title)}
+                variant="ghost"
+                className="w-full justify-start text-left"
+                onClick={() => handleActionClick(resource.label)}
               >
-                <div className="flex space-x-4">
-                  <img
-                    src={`https://images.unsplash.com/${course.image}?auto=format&fit=crop&w=200`}
-                    alt={course.title}
-                    className="w-24 h-24 rounded-lg object-cover"
-                  />
-                  <div className="flex-1">
-                    <h3 className="font-semibold mb-1">{course.title}</h3>
-                    <p className="text-sm text-gray-500 mb-1">by {course.instructor}</p>
-                    <div className="flex items-center space-x-4">
-                      <span className="flex items-center text-sm text-yellow-500">
-                        <Star className="h-4 w-4 mr-1 fill-current" />
-                        {course.rating}
-                      </span>
-                      <span className="flex items-center text-sm text-gray-500">
-                        <Clock className="h-4 w-4 mr-1" />
-                        {course.duration}
-                      </span>
-                    </div>
-                    <p className="text-sm text-primary mt-1">{course.students.toLocaleString()} students</p>
-                  </div>
-                </div>
-              </div>
+                <resource.icon className="h-4 w-4 mr-2" />
+                {resource.label}
+              </Button>
             ))}
           </div>
-        </div>
+        </Card>
 
-        <div className="mb-8 animate-fade-in">
-          <h2 className="text-lg font-semibold mb-4">Popular Instructors</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {popularInstructors.map((instructor, index) => (
-              <div key={index} className="bg-white rounded-xl p-4 shadow-sm">
-                <img
-                  src={`https://images.unsplash.com/${instructor.image}?auto=format&fit=crop&w=150`}
-                  alt={instructor.name}
-                  className="w-16 h-16 rounded-full mx-auto mb-2 object-cover"
-                />
-                <h3 className="text-center font-semibold text-sm">{instructor.name}</h3>
-                <p className="text-center text-xs text-gray-500">{instructor.expertise}</p>
-                <p className="text-center text-xs text-primary mt-1">
-                  {instructor.students.toLocaleString()} students
-                </p>
-              </div>
+        {/* Bottom Navigation */}
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
+          <div className="max-w-lg mx-auto flex justify-between items-center">
+            {[
+              { icon: Home, label: "Home" },
+              { icon: Book, label: "Courses" },
+              { icon: ClipboardList, label: "Assignments" },
+              { icon: User, label: "Profile" }
+            ].map((item, index) => (
+              <Button
+                key={index}
+                variant="ghost"
+                className="flex flex-col items-center gap-1"
+                onClick={() => handleActionClick(item.label)}
+              >
+                <item.icon className="h-5 w-5" />
+                <span className="text-xs">{item.label}</span>
+              </Button>
             ))}
           </div>
         </div>
